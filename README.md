@@ -6,3 +6,6 @@
 
 # Setting up Database-mysql
 -   Seting up prisma,configuring .env database-url 
+-   datagrid configured and db is working correctly connection tested-ok
+-   prisma client is working 
+-   post request created app>api>issues>route.tsx,zod used,
