@@ -1,1 +1,1 @@
-## every functionalities use need to be writen here 
+## every functionalities used needs to be writen here 
