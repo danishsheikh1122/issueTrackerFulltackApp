@@ -5,4 +5,5 @@
 -   Navbar styling using classnames pkg (it makes conditional styling very easy)
 
 # Setting up Database-mysql
--   Seting up prisma,configuring .env database-url 
+-   Seting up prisma,configuring .env database-url
+-   datagrid configured and db is working correctly connection tested-OK
