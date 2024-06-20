@@ -1,7 +1,11 @@
+'use client'
 import React from "react";
 import Link from "next/link";
 import { IoBugOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
+import classNames from "classnames";
 const NavBar = () => {
+    const currentPath=usePathname()//this hook is dependent on broser api so makr nav bar as client cmp
   const links = [
     {
       name: "Dashboard",
@@ -23,8 +27,11 @@ const NavBar = () => {
             <Link
               key={link.href}
               href={link.href}
-              className="text-zinc-500 hover:text-zinc-800 capitalize transition-colors "
-            >
+              className={classNames({
+                "text-zinc-500": currentPath!== link.href,
+                "text-zinc-900": currentPath === link.href,
+                "hover:text-zinc-900 transition-colors  ":true,
+              })} >
               {link.name}
             </Link>
           ))}
