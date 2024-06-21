@@ -11,20 +11,17 @@ interface IssueData {
 }
 
 const NewIssuePage = () => {
-  const { register, control, handleSubmit } = useForm<IssueData>();
-  const [alert, setAlert] = useState<{
-    type: "success" | "danger";
-    message: string;
-  } | null>(null);
+  const { register, control, handleSubmit, formState: { errors } } = useForm<IssueData>();
+  const [alert, setAlert] = useState<{ type: "success" | "danger"; message: string } | null>(null);
   const router = useRouter();
 
-  const onSubmit = async (data: IssueData) => {
+  const onSubmit = async ({ title, description }: IssueData) => {
     const response = await fetch("/api/issues", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ title, description }),
     });
 
     if (response.ok) {
@@ -33,46 +30,52 @@ const NewIssuePage = () => {
         router.push("/issues");
       }, 2000); // Redirect after 2 seconds
     } else {
-        setAlert({ type: "danger", message: "Your issue has not been created" });
-        setTimeout(() => {
-          router.push("/issues");
-        }, 2000); // Redirect after 2 seconds
+      setAlert({ type: "danger", message: "Your issue has not been created:lenght is short" });
+      setTimeout(() => {
+        router.push("/issues");
+      }, 2000); // Redirect after 2 seconds
     }
   };
 
   return (
-    <div className="h-[35rem] p-4 w-full font-roboto" data-theme="fantasy">
+    <div className="h-[35rem] p-4 w-full"data-theme="fantasy">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="h-full w-1/2 flex flex-col">
-          <input
-            type="text"
-            placeholder="Title "
-            className="input input-bordered input-sm max-w-xl"
-            {...register("title")}
-          />
-          <Controller
-            name="description"
-            control={control}
-            render={({ field }) => (
-              <SimpleMDE
-                placeholder="Description"
-                {...field}
-                className="mt-4"
-              />
-            )}
-          />
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Title"
+              className={`input input-bordered input-sm max-w-xl ${errors.title ? 'input-error' : ''}`}
+              {...register("title", { required: "Title is required" })}
+            />
+            {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+          </div>
+          <div className="mb-4">
+            <Controller
+              name="description"
+              control={control}
+              rules={{ required: "Description is required" }}
+              render={({ field }) => (
+                <SimpleMDE
+                  placeholder="Description"
+                  {...field}
+                  className={`mt-4 ${errors.description ? 'border-red-500' : ''}`}
+                />
+              )}
+            />
+            {errors.description && <p className="text-red-500">{errors.description.message}</p>}
+          </div>
           <button className="btn btn-secondary w-1/3 capitalize mt-2">
             Submit new issue
           </button>
         </div>
       </form>
-      {alert && 
-      
+      {alert && (
         <div
           role="alert"
           className={`alert ${
             alert.type === "success" ? "alert-success" : "alert-danger"
-          } absolute top-[5rem] right-0  w-1/3 mr-[1rem]`}
+          } absolute top-[5rem] right-0 w-1/3 mr-[1rem]`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +92,7 @@ const NewIssuePage = () => {
           </svg>
           <span>{alert.message}</span>
         </div>
-      }
+      )}
     </div>
   );
 };

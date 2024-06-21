@@ -19,3 +19,6 @@
 
 # Handeled for submission
 -   data stored in db used simple fetch to hit post request and useRouter hook to redirect to previous page
+
+# Displayed all issues from db to issue page
+-     const data = await prisma.issue.findMany(); just this much code to retrive data from database and do whatever you want to do with that data 
