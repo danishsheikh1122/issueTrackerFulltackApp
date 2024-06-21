@@ -13,3 +13,5 @@
 # Settings up Daisy ui
 -   daisy ui is working 
 
+# Creating ui of issue page 
+-   issue page created with daisyui
