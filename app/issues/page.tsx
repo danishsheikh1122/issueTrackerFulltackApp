@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const IssuesPage = () => {
+const IssuePage = () => {
   return (
-    <div>IssuesPage</div>
-  )
-}
+    <div>
+      IssuePage
+      <button className="btn btn-primary">Hello daisyUI!</button>
+    </div>
+  );
+};
 
-export default IssuesPage
+export default IssuePage;
