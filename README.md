@@ -15,3 +15,4 @@
 
 # Creating ui of issue page 
 -   issue page created with daisyui
+-   created new issue page and added markdown editor

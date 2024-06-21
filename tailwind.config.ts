@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        roboto:'var(--font-roboto)'
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -17,5 +20,8 @@ const config: Config = {
     },
   },
   plugins: [daisyui],
+  daisyui:{
+    themes:['corporate','dark','fantasy']
+  }
 };
 export default config;
