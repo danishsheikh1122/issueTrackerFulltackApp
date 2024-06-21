@@ -16,3 +16,6 @@
 # Creating ui of issue page 
 -   issue page created with daisyui
 -   created new issue page and added markdown editor
+
+# Handeled for submission
+-   data stored in db used simple fetch to hit post request and useRouter hook to redirect to previous page
