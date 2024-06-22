@@ -39,4 +39,7 @@
 -   added page.tsx in id and seperate loading for that page
 
 # Created IssueBadge component to optimize our code and make it readable
-- app/components/issuebadge is created and it takes props as string 
+-   app/components/issuebadge is created and it takes props as string 
+
+# Styled ViewIssueDetailsPage page
+-   added style to this page

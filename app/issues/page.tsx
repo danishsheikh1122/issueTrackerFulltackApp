@@ -46,7 +46,7 @@ const IssuePage = async () => {
                   <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
                 </td>
                 <td>
-              <IssueBadge status={issue.status}></IssueBadge>
+                  <IssueBadge status={issue.status}></IssueBadge>
                 </td>
                 <td className="hidden lg:block md:block">
                   {issue.createdAt.toDateString()}
