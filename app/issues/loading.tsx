@@ -20,9 +20,9 @@ const loading = () => {
           <thead className="bg-gray-300">
             <tr>
               {/* <th className="text-left font-semibold">#</th> */}
-              <th className="text-left font-semibold capitalize">title</th>
-              <th className="text-left font-semibold capitalize">status</th>
-              <th className="text-left font-semibold capitalize hidden lg:block md:block">
+              <th className="text-left font-semibold capitalize text-lg">title</th>
+              <th className="text-left font-semibold capitalize text-lg">status</th>
+              <th className="text-left font-semibold capitalize hidden lg:block md:block text-lg">
                 created at
               </th>
             </tr>

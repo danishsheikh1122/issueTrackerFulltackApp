@@ -11,8 +11,16 @@ interface IssueData {
 }
 
 const NewIssuePage = () => {
-  const { register, control, handleSubmit, formState: { errors } } = useForm<IssueData>();
-  const [alert, setAlert] = useState<{ type: "success" | "danger"; message: string } | null>(null);
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IssueData>();
+  const [alert, setAlert] = useState<{
+    type: "success" | "danger";
+    message: string;
+  } | null>(null);
   const router = useRouter();
 
   const onSubmit = async ({ title, description }: IssueData) => {
@@ -30,7 +38,10 @@ const NewIssuePage = () => {
         router.push("/issues");
       }, 2000); // Redirect after 2 seconds
     } else {
-      setAlert({ type: "danger", message: "Your issue has not been created:lenght is short" });
+      setAlert({
+        type: "danger",
+        message: "Your issue has not been created:lenght is short",
+      });
       setTimeout(() => {
         router.push("/issues");
       }, 2000); // Redirect after 2 seconds
@@ -38,17 +49,21 @@ const NewIssuePage = () => {
   };
 
   return (
-    <div className="h-[35rem] p-4 w-full"data-theme="fantasy">
+    <div className="h-[35rem] p-4 w-full" data-theme="fantasy">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="h-full w-1/2 flex flex-col">
-          <div className="mb-4">
+          <div className="mb-4 w-full">
             <input
               type="text"
               placeholder="Title"
-              className={`input input-bordered input-sm max-w-xl ${errors.title ? 'input-error' : ''}`}
+              className={`input input-bordered input-sm w-full ${
+                errors.title ? "input-error" : ""
+              }`}
               {...register("title", { required: "Title is required" })}
             />
-            {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+            {errors.title && (
+              <p className="text-red-500">{errors.title.message}</p>
+            )}
           </div>
           <div className="mb-4">
             <Controller
@@ -59,11 +74,15 @@ const NewIssuePage = () => {
                 <SimpleMDE
                   placeholder="Description"
                   {...field}
-                  className={`mt-4 ${errors.description ? 'border-red-500' : ''}`}
+                  className={`mt-4 ${
+                    errors.description ? "border-red-500" : ""
+                  }`}
                 />
               )}
             />
-            {errors.description && <p className="text-red-500">{errors.description.message}</p>}
+            {errors.description && (
+              <p className="text-red-500">{errors.description.message}</p>
+            )}
           </div>
           <button className="btn btn-secondary w-1/3 capitalize mt-2">
             Submit new issue
