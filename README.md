@@ -43,3 +43,7 @@
 
 # Styled ViewIssueDetailsPage page
 -   added style to this page
+
+# Skeleton added to viewOIssueDetailsPage 
+-   added delay to enhance ui/ux and used delay npm pkg
+-   loading.tsx added in [id]>loading.tsx and used react-skeleton pkg 

@@ -2,10 +2,14 @@ import React from "react";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import IssueBadge from "@/app/components/issueBadge/IssueBagde";
+import ReactMarkDown from 'react-markdown';
+import delay from 'delay'
+
 interface Props {
   params: { id: string };
 }
 const ViewIssueDetailsPage = async ({ params: { id } }: Props) => {
+    await delay(2000)
   //   if (typeof id !== 'number') notFound(); if in route client passes any alphabet the it will render the 404 page
   const issueData = await prisma.issue.findUnique({
     where: { id: parseInt(id) },
@@ -19,9 +23,8 @@ const ViewIssueDetailsPage = async ({ params: { id } }: Props) => {
         <IssueBadge status={issueData.status} />
         <span>{issueData.createdAt.toDateString()}</span>
       </div>
-      <div className="border border-solid border-zinc-300 w-1/3 h-fit p-4 mt-4 rounded-md capitalize">{issueData.description}</div>
+      <ReactMarkDown className="prose  border border-solid border-zinc-300 w-1/2 h-auto p-4 mt-4 rounded-md capitalize">{issueData.description}</ReactMarkDown>
     </div>
   );
 };
-
 export default ViewIssueDetailsPage;

@@ -6,6 +6,8 @@ import delay from "delay";
 
 //importing issuetrackerBadge
 import IssueBadge from "../components/issueBadge/IssueBagde";
+import { CgNametag } from "react-icons/cg";
+import classNames from "classnames";
 const IssuePage = async () => {
   //adding custome delat
   await delay(2000);
@@ -43,7 +45,7 @@ const IssuePage = async () => {
               <tr className="hover" key={issue.id}>
                 {/* <th>{issue.id}</th> */}
                 <td className="capitalize">
-                  <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
+                  <Link href={`/issues/${issue.id}`} className='text-blue-400 hover:underline'>{issue.title}</Link>
                 </td>
                 <td>
                   <IssueBadge status={issue.status}></IssueBadge>
