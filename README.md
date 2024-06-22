@@ -51,3 +51,6 @@
 
 # Bugfixed
 -   editor in issues/new page is ssr but requires client side events so we make it client component 
+
+# Refactoring imports
+-   refactoring and organising all imports in components folder 

@@ -5,12 +5,12 @@ import prisma from "@/prisma/client";
 import delay from "delay";
 
 //importing issuetrackerBadge
-import IssueBadge from "../components/issueBadge/IssueBagde";
+import { IssueBadge } from "../components/index";
 import { CgNametag } from "react-icons/cg";
 import classNames from "classnames";
 const IssuePage = async () => {
   //adding custome delat
-  await delay(2000);
+  // await delay(2000);
   const data = await prisma.issue.findMany();
   return (
     <div data-theme="fantasy">

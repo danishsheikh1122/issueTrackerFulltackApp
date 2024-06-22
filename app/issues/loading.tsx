@@ -1,6 +1,5 @@
 import React from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from '@/app/components//Skeleton' 
 import Link from "next/link";
 const loading = () => {
   const data = [1, 2, 3, 4, 5];
