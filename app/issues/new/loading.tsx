@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
-const NewIssueLoading = () => {
+const NewFolderLoading = () => {
   return (
-    <div>
-      <span className="loading loading-spinner text-secondary"></span>
-    </div>
+    <div><Skeleton/></div>
   );
 };
 
-export default NewIssueLoading;
+export default NewFolderLoading;

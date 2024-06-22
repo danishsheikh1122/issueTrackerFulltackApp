@@ -1,10 +1,18 @@
 "use client";
 import React, { useState } from "react";
-import SimpleMDE from "react-simplemde-editor";
+// import SimpleMDE from "react-simplemde-editor";
+
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
+// making editior as slient side cmp 
+const SimpleMDE=dynamic(()=>import ('react-simplemde-editor'),{
+  ssr:false
+})
+
+//editor 
 interface IssueData {
   title: string;
   description: string;

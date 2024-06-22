@@ -17,7 +17,7 @@ const loading = () => {
           </span>
         </div>
         <div className="prose  border border-solid border-zinc-300 w-1/2 h-auto p-4 mt-4 rounded-md capitalize">
-          <Skeleton />
+          <Skeleton count={3}/>
         </div>
       </div>
     </>
