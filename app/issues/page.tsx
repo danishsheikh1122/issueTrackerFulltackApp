@@ -3,6 +3,9 @@ import Link from "next/link";
 import prisma from "@/prisma/client";
 //adding custome delay
 import delay from "delay";
+
+//importing issuetrackerBadge
+import IssueBadge from "../components/issueBadge/IssueBagde";
 const IssuePage = async () => {
   //adding custome delat
   await delay(2000);
@@ -43,21 +46,7 @@ const IssuePage = async () => {
                   <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
                 </td>
                 <td>
-                  {issue.status === "OPEN" && (
-                    <div className=" badge border-none bg-green-200 text-green-400  rounded-md">
-                      {issue.status}
-                    </div>
-                  )}
-                  {issue.status === "IN_PROGRESS" && (
-                    <div className=" badge border-none bg-purple-200 text-purple-400   rounded-md">
-                      {issue.status}
-                    </div>
-                  )}
-                  {issue.status === "CLOSED" && (
-                    <div className=" badge border-none bg-red-200 text-red-400 rounded-md">
-                      {issue.status}
-                    </div>
-                  )}
+              <IssueBadge status={issue.status}></IssueBadge>
                 </td>
                 <td className="hidden lg:block md:block">
                   {issue.createdAt.toDateString()}

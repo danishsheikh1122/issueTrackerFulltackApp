@@ -32,3 +32,11 @@
 # added skeleton
 
 -   added skeleton loading in loading.tsx and used npm pkg react-loading-skeleton to do so this pkg makes it very easy to implement skeleton loading in any app.
+
+
+# created [id] to get id od the clicked issue 
+-   added [id] folder and fetch unique data form DB using prisma
+-   added page.tsx in id and seperate loading for that page
+
+# Created IssueBadge component to optimize our code and make it readable
+- app/components/issuebadge is created and it takes props as string 
