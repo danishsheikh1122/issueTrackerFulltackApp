@@ -8,7 +8,9 @@ import delay from "delay";
 import { IssueBadge } from "../components/index";
 import { CgNametag } from "react-icons/cg";
 import classNames from "classnames";
-const IssuePage = async () => {
+import { NextRequest } from "next/server";
+
+const IssuePage = async (req:NextRequest) => {//adding this to remove cash from browser page is not reloading after submiting the issue 
   //adding custome delat
   // await delay(2000);
   const data = await prisma.issue.findMany();

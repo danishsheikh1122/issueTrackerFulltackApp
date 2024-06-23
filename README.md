@@ -54,3 +54,9 @@
 
 # Refactoring imports
 -   refactoring and organising all imports in components folder 
+
+
+# Created many pathc api and created reusable component in _components folder (the _component folder will not appera in routing coz it starts with _ it is good conventioncompanies uses) many updatrs hav been added and bugs fixes 
+
+-   refer code fro Issueform inside _components folder , api>issues>[id]>route.tsx 
+-   kind of mess happened in code 😓
