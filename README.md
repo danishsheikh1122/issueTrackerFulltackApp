@@ -78,3 +78,6 @@
 
 # Deleted above both loading files 
 - added one loading.tsx in _components folder to make it reusable and reuse it in edit and new issues page.tsx
+
+# one bug detected 
+- refresh the issue page and click on create new issue page and see skeleton loading of parent is showing first then html is rendered need to fix it  
