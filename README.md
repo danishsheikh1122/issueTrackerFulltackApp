@@ -81,3 +81,5 @@
 
 # one bug detected 
 - refresh the issue page and click on create new issue page and see skeleton loading of parent is showing first then html is rendered need to fix it  
+
+- same bug in edit issue age and new issue page not fixed till now
