@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
-
+// import dynamic from "next/dynamic";
+import SimpleMDE from 'react-simplemde-editor'
 // Making editor as client-side component
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false,
-});
+// const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+//   ssr: false,
+// });
+// again disabling enabling ssr here
+
 
 // Editor data type
 interface IssueData {

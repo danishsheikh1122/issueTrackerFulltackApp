@@ -1,6 +1,6 @@
 import React from "react";
 import Skeleton from '@/app/components//Skeleton'
-const loading = () => {
+const Loadingcmp = () => {
   return (
     <>
       <div className="mt-8 ml-6 ">
@@ -23,4 +23,4 @@ const loading = () => {
   );
 };
 
-export default loading;
+export default Loadingcmp;

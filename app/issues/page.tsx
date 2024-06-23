@@ -10,7 +10,7 @@ import { CgNametag } from "react-icons/cg";
 import classNames from "classnames";
 import { NextRequest } from "next/server";
 
-const IssuePage = async (req:NextRequest) => {//adding this to remove cash from browser page is not reloading after submiting the issue 
+const IssuePage = async () => {
   //adding custome delat
   // await delay(2000);
   const data = await prisma.issue.findMany();
