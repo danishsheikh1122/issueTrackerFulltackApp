@@ -1,6 +1,6 @@
 import React from "react";
 import Skeleton from "@/app/components//Skeleton";
-const Loadingcmp = () => {
+const IssueFormLoading = () => {
   return (
     <>
       <div className="h-[35rem] p-4 w-full" data-theme="fantasy">
@@ -28,4 +28,4 @@ const Loadingcmp = () => {
   );
 };
 
-export default Loadingcmp;
+export default IssueFormLoading;

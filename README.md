@@ -74,4 +74,7 @@
 - reactsimpleMDE editor which is present in edit and new issues files is maked client side using this
   const IssueForm=dynamic(()=>import('@/app/issues/components/IssueForm'),{ssr:false ,loading:()=><Loadingcmp></Loadingcmp>})
 - added seperate loading.tsx in new and edit issue folder and rendered using abovee loading:()=> loading.tsx->cmp 
- 
+
+
+# Deleted above both loading files 
+- added one loading.tsx in _components folder to make it reusable and reuse it in edit and new issues page.tsx
