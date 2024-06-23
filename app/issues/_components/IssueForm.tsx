@@ -66,7 +66,8 @@ const IssueForm = ({ issueId, issueTitle, issueDescription }: Props) => {
         });
         setTimeout(() => {
           router.push(issueId ? `/issues/${issueId}` : "/issues");
-        }, 2000); // Redirect after 2 seconds
+          router.refresh()
+        }, 1000); // Redirect after 2 seconds
       } else {
         const errorData = await response.json();
         setAlert({

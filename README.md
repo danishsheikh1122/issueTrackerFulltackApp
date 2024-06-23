@@ -60,3 +60,8 @@
 
 -   refer code fro Issueform inside _components folder , api>issues>[id]>route.tsx 
 -   kind of mess happened in code 😓
+
+
+# Page is not refreshing 
+-   fixed caching issue
+-  to referesh the page, so to do that we have several options but most commonly used client side method is call-> router.referesh() after router.push('/issue/edit') etc pages
