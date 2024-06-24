@@ -6,9 +6,11 @@ import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
 import LoginCard from "./components/LoginCard";
+import Skeleton from "./components/Skeleton";
 const NavBar = () => {
   const { status, data: session } = useSession();
   const currentPath = usePathname(); //this hook is dependent on broser api so makr nav bar as client cmp
+
   const links = [
     {
       name: "Dashboard",
@@ -44,10 +46,14 @@ const NavBar = () => {
       </ul>
       <div className="container flex  justify-end items-center">
         {status === "unauthenticated" && (
-          <Link href="/api/auth/signin" className="capitalize mr-4 text-zinc-400">
+          <Link
+            href="/api/auth/signin"
+            className="capitalize mr-4 text-zinc-400"
+          >
             Log in
           </Link>
         )}
+        {status === "loading" && <Skeleton className="w-[5rem] h-[2rem]" />}
         {status === "authenticated" && (
           <Link href="/api/auth/signout" className="capitalize mr-4">
             Log out

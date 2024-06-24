@@ -106,3 +106,5 @@ DB)
 - seperated these links in different files and created LoginCard.tsx app>components/LoginCard.tsx
 - created login links in NavBar.tsx
 
+# added skeleton loading for logout and login button
+-login links are apperarign after some time so we added skeleton loading to improve user experience
