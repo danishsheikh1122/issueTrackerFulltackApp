@@ -99,3 +99,6 @@ DB)
 - watch mosh from 48.1,49.2,50.3 to setup next-auth 
 - do as he does and ou will get results
 - successfully implemented next-auth 
+
+# added login and logout buttons
+- added these button in navbar cmp also used session refer 51.4 

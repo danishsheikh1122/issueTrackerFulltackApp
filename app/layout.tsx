@@ -6,11 +6,12 @@ import "./globals.css";
 // importing theme cmp from radix
 // import { Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
+import Provider from "./auth/Provider";
 const inter = Inter({ subsets: ["latin"] });
-const poppins= Poppins({
-  subsets: ['latin'],
-  weight: ['100', '300', '400', '500', '700', '900'],
-  variable: '--font-roboto',
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+  variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
@@ -26,11 +27,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.variable}>
+        <Provider>
+
         {/* <Theme> */}
         <NavBar></NavBar>
         <main>{children}</main>
 
         {/* </Theme> */}
+        </Provider>
       </body>
     </html>
   );

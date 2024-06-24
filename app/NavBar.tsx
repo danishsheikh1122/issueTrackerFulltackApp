@@ -1,11 +1,13 @@
-'use client'
+"use client";
 import React from "react";
 import Link from "next/link";
 import { IoBugOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
+import { useSession } from "next-auth/react";
 const NavBar = () => {
-    const currentPath=usePathname()//this hook is dependent on broser api so makr nav bar as client cmp
+  const { status, data: session } = useSession();
+  const currentPath = usePathname(); //this hook is dependent on broser api so makr nav bar as client cmp
   const links = [
     {
       name: "Dashboard",
@@ -23,19 +25,25 @@ const NavBar = () => {
         <IoBugOutline />
       </Link>
       <ul className="flex space-x-6">
-          {links.map((link) => (
+        {links.map((link) => (
+          <li key={link.href}>
             <Link
-              key={link.href}
               href={link.href}
               className={classNames({
-                "text-zinc-500": currentPath!== link.href,
+                "text-zinc-500": currentPath !== link.href,
                 "text-zinc-900": currentPath === link.href,
-                "hover:text-zinc-900 transition-colors  ":true,
-              })} >
+                "hover:text-zinc-900 transition-colors  ": true,
+              })}
+            >
               {link.name}
             </Link>
-          ))}
-       </ul>
+          </li>
+        ))}
+      </ul>
+      <div className="container flex  justify-end">
+        {status === 'authenticated' && <Link href="/api/auth/signout" className="capitalize mr-4">log out</Link>}
+        {status === 'unauthenticated' && <Link href="/api/auth/signin" className="capitalize mr-4">log in</Link>}
+      </div>
     </nav>
   );
 };
