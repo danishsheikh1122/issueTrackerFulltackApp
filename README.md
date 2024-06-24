@@ -93,3 +93,9 @@ DB)
 
 - DeleteIssuebutton added to issue>[id]>DeleteIssueButton.tsx containes all the code to delete issue also using fetch delete to delete the data from db
 - imporving loading and added spinner in delete button 
+
+# implementing auth.js 
+- refer this docs https://next-auth.js.org/providers/google
+- watch mosh from 48.1,49.2,50.3 to setup next-auth 
+- do as he does and ou will get results
+- successfully implemented next-auth 
