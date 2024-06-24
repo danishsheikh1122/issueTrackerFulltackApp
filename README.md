@@ -105,3 +105,4 @@ DB)
 - styling these links
 - seperated these links in different files and created LoginCard.tsx app>components/LoginCard.tsx
 - created login links in NavBar.tsx
+

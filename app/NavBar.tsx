@@ -20,7 +20,7 @@ const NavBar = () => {
       href: "/issues",
     },
   ];
-  console.log(status);
+  // console.log(status);
   return (
     <nav className="flex space-x-6 border-b mb-2 px-5 h-14 items-center">
       <Link href="/">
@@ -44,7 +44,7 @@ const NavBar = () => {
       </ul>
       <div className="container flex  justify-end items-center">
         {status === "unauthenticated" && (
-          <Link href="/api/auth/signin" className="capitalize mr-4">
+          <Link href="/api/auth/signin" className="capitalize mr-4 text-zinc-400">
             Log in
           </Link>
         )}
@@ -53,6 +53,8 @@ const NavBar = () => {
             Log out
           </Link>
         )}
+
+        {/* LoginCard  */}
         <LoginCard
           status={status}
           logo={session?.user?.image!}
