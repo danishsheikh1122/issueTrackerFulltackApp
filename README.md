@@ -83,3 +83,10 @@
 - refresh the issue page and click on create new issue page and see skeleton loading of parent is showing first then html is rendered need to fix it  
 
 - same bug in edit issue age and new issue page not fixed till now
+
+
+# Delete button added to edit issue page
+- api created to delete issue form db (alway screate a api req wehenever you need to communicate with 
+DB)
+
+- DeleteIssuebutton added to issue>[id]>DeleteIssueButton.tsx containes all the code to delete issue also using fetch delete to delete the data from db
