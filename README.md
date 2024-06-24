@@ -93,3 +93,6 @@ DB)
 
 - DeleteIssuebutton added to issue>[id]>DeleteIssueButton.tsx containes all the code to delete issue also using fetch delete to delete the data from db
 - imporving loading and added spinner in delete button 
+
+# implementing auth.js 
+- 
