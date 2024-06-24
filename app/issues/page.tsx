@@ -6,10 +6,6 @@ import delay from "delay";
 
 //importing issuetrackerBadge
 import { IssueBadge } from "../components/index";
-import { CgNametag } from "react-icons/cg";
-import classNames from "classnames";
-import { NextRequest } from "next/server";
-
 const IssuePage = async () => {
   //adding custome delat
   // await delay(2000);

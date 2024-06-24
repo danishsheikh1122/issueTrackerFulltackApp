@@ -84,9 +84,12 @@
 
 - same bug in edit issue age and new issue page not fixed till now
 
+# above bug
+- this is a bug presnet in current version of next js however we can slove thi by breaking the hierarchy of the routes but i am not fixing it coz it will make route ugly and refer 47.7
 
 # Delete button added to edit issue page
 - api created to delete issue form db (alway screate a api req wehenever you need to communicate with 
 DB)
 
 - DeleteIssuebutton added to issue>[id]>DeleteIssueButton.tsx containes all the code to delete issue also using fetch delete to delete the data from db
+- imporving loading and added spinner in delete button 

@@ -1,7 +1,7 @@
 import React from "react";
 import Skeleton from '@/app/components//Skeleton' 
 import Link from "next/link";
-const loading = () => {
+const IssuePageSkeleton = () => {
   const data = [1, 2, 3, 4, 5];
   return (
     <div data-theme="fantasy">
@@ -49,4 +49,4 @@ const loading = () => {
   );
 };
 
-export default loading;
+export default IssuePageSkeleton;

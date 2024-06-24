@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.0",
+    "@heroicons/react": "^2.1.4",
     "@prisma/client": "^5.15.1",
     "classname": "^0.0.0",
     "classnames": "^2.5.1",
