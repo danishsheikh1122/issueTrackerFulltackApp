@@ -102,3 +102,5 @@ DB)
 
 # added login and logout buttons
 - added these button in navbar cmp also used session refer 51.4 
+- styling these links
+- seperated these links in different files and created LoginCard.tsx app>components/LoginCard.tsx

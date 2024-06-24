@@ -5,6 +5,7 @@ import { IoBugOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
+import LoginCard from "./components/LoginCard";
 const NavBar = () => {
   const { status, data: session } = useSession();
   const currentPath = usePathname(); //this hook is dependent on broser api so makr nav bar as client cmp
@@ -19,6 +20,7 @@ const NavBar = () => {
       href: "/issues",
     },
   ];
+  console.log(status);
   return (
     <nav className="flex space-x-6 border-b mb-2 px-5 h-14 items-center">
       <Link href="/">
@@ -40,9 +42,23 @@ const NavBar = () => {
           </li>
         ))}
       </ul>
-      <div className="container flex  justify-end">
-        {status === 'authenticated' && <Link href="/api/auth/signout" className="capitalize mr-4">log out</Link>}
-        {status === 'unauthenticated' && <Link href="/api/auth/signin" className="capitalize mr-4">log in</Link>}
+      <div className="container flex  justify-end items-center">
+        {status === "unauthenticated" && (
+          <Link href="/api/auth/signin" className="capitalize mr-4">
+            Log in
+          </Link>
+        )}
+        {status === "authenticated" && (
+          <Link href="/api/auth/signout" className="capitalize mr-4">
+            Log out
+          </Link>
+        )}
+        <LoginCard
+          status={status}
+          logo={session?.user?.image!}
+          name={session?.user?.name!}
+          email={session?.user?.email!}
+        ></LoginCard>
       </div>
     </nav>
   );
