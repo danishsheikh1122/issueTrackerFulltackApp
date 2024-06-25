@@ -117,7 +117,7 @@
 
 # bug fixes-related to next-auth
 
-# most imp reviously we are using AUTH_SECRET but we are next-auth so use NEXTAUTH_SECRET NEXTAUTH_SECRET
+- most imp reviously we are using AUTH_SECRET but we are next-auth so use NEXTAUTH_SECRET NEXTAUTH_SECRET
 
 - while using AUTH_SECRET as secret name ithis error is occuring [next-auth][warn][NO_SECRET] https://next-auth.js.org/warnings#no_secret
 - NEXTAUTH_SECRET=Ah78Knw2bjrdOy2puqeLujL5YgKY2N37EDE/+gbrA+E= #no need to wrap it in string but it is fine
