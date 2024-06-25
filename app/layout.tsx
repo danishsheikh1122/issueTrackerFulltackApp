@@ -7,6 +7,7 @@ import "./globals.css";
 // import { Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
 import Provider from "./auth/Provider";
+import ReactQuery from "./ReactQuery";
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,14 +28,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.variable}>
+        <ReactQuery>
+
         <Provider>
+          {/* <Theme> */}
+          <NavBar></NavBar>
+          <main>{children}</main>
 
-        {/* <Theme> */}
-        <NavBar></NavBar>
-        <main>{children}</main>
-
-        {/* </Theme> */}
+          {/* </Theme> */}
         </Provider>
+        </ReactQuery>
       </body>
     </html>
   );
