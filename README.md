@@ -145,3 +145,10 @@
   Provider obj path-app/auth/ProviderObjext.ts
 - in each POST DELETE request we define this 
 and if(!session) then we sended nextresonse ad 401 unauthenticated 
+
+
+# assign to component added 
+- this cmp is used assign issue to users is present in issues/_cmps folder 
+- assign cmp full working with fetch
+- every time fetch is not good so we are using react quwery to do so 
+- created seperate branch for fetch
