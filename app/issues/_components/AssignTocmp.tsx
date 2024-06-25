@@ -1,29 +1,41 @@
 // components/AssignTocmp.tsx
 "use client";
+import { useQuery } from "@tanstack/react-query";
 import { User } from "next-auth";
-import React, { useEffect, useState } from "react";
-const AssignTocmp: React.FC = () => {
-  //geting clients data
-  const [clientsData, setClientsData] = useState<User[]>();//we are directly accessing User schema modal from prisma/schema
-  console.log(clientsData);
+import React from "react";
+import axios from "axios";
+import Skeleton from "@/app/components/Skeleton";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch("http://localhost:3000/api/users");
-      const {body} = await data.json();
-      setClientsData(body);
-    };
-    fetchData();
-  }, []);
+interface UserResponse {
+  status: number;
+  body: User[];
+}
+
+const AssignTocmp: React.FC = () => {
+  const { data, error, isLoading } = useQuery<UserResponse, Error>({
+    queryKey: ['users'],
+    queryFn: () => axios.get('/api/users').then((res) => res.data),
+    staleTime: 60 * 1000, // 60 seconds
+    retry: 3
+  });
+
+  if (isLoading) return <Skeleton />;
+  if (error) return <div>Error loading users</div>;
+
+  // console.log(data?.body);
+
   return (
-    <select className="select select-bordered max-w-xs rounded-lg w-[70%]">
-      <option disabled selected defaultValue={"Who shot first?"}>
+    <select className="select select-bordered max-w-xs rounded-lg w-[70%]" defaultValue="">
+      <option disabled value="">
         Who shot first?
       </option>
-      {clientsData?.map(clientsData =><option className="text-black" value={clientsData.name!} key={clientsData.id!}>{clientsData.name}</option>)}
+      {data?.body?.map((clientsData) => (
+        <option className="text-black" value={clientsData.name!} key={clientsData.id!}>
+          {clientsData.name}
+        </option>
+      ))}
     </select>
   );
 };
 
 export default AssignTocmp;
- 

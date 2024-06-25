@@ -156,4 +156,8 @@ and if(!session) then we sended nextresonse ad 401 unauthenticated
 
 # So in order to solve above we are making this changes
 - we have used tankstack.com React Query to fetch and cach data in efficient way now need to to fetch data every time we edit issue or etc
-- created ReactQuery.tsx in app>ReactQuery.tsx and imported it in layout.tsx and wrap all body cmp to <ReactQuery>
+- created ReactQuery.tsx in app>ReactQuery.tsx and imported it in layout.tsx and wrap all body cmp to ReactQuer
+
+- React Query worked dont check type at useQuery<User>
+instead check it later on..... 
+
