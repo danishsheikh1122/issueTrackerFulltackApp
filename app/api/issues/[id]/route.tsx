@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
 import schema from "../schema";
+import ProviderObject from "@/app/auth/ProviderObjext";
+import { getServerSession } from "next-auth";
 interface Params {
   params: { id: string };
 }
 
 // patch to update one or more fileds
 export async function PATCH(req: NextRequest, { params: { id } }: Params) {
+  const session=await getServerSession(ProviderObject)
+  if(!session) return NextResponse.json({message:"login first"},{status:401})//if we dont have session then return unauthorized
   const intId = parseInt(id);
   const body = await req.json();
   const isValidate = schema.safeParse(body);
@@ -29,6 +33,9 @@ export async function PATCH(req: NextRequest, { params: { id } }: Params) {
 }
 
 export async function DELETE(req:NextRequest,{params:{id}}:Params){
+  const session=await getServerSession(ProviderObject)
+  if(!session) return NextResponse.json({message:"login first"},{status:401})//if we dont have session then return unauthorized
+
   const intId = parseInt(id);
   const issuePresent = await prisma.issue.findUnique({ where: { id: intId } });
   if (!issuePresent)

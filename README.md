@@ -73,54 +73,75 @@
 
 - reactsimpleMDE editor which is present in edit and new issues files is maked client side using this
   const IssueForm=dynamic(()=>import('@/app/issues/components/IssueForm'),{ssr:false ,loading:()=><Loadingcmp></Loadingcmp>})
-- added seperate loading.tsx in new and edit issue folder and rendered using abovee loading:()=> loading.tsx->cmp 
+- added seperate loading.tsx in new and edit issue folder and rendered using abovee loading:()=> loading.tsx->cmp
 
+# Deleted above both loading files
 
-# Deleted above both loading files 
-- added one loading.tsx in _components folder to make it reusable and reuse it in edit and new issues page.tsx
+- added one loading.tsx in \_components folder to make it reusable and reuse it in edit and new issues page.tsx
 
-# one bug detected 
-- refresh the issue page and click on create new issue page and see skeleton loading of parent is showing first then html is rendered need to fix it  
+# one bug detected
+
+- refresh the issue page and click on create new issue page and see skeleton loading of parent is showing first then html is rendered need to fix it
 
 - same bug in edit issue age and new issue page not fixed till now
 
 # above bug
+
 - this is a bug presnet in current version of next js however we can slove thi by breaking the hierarchy of the routes but i am not fixing it coz it will make route ugly and refer 47.7
 
 # Delete button added to edit issue page
-- api created to delete issue form db (alway screate a api req wehenever you need to communicate with 
-DB)
+
+- api created to delete issue form db (alway screate a api req wehenever you need to communicate with
+  DB)
 
 - DeleteIssuebutton added to issue>[id]>DeleteIssueButton.tsx containes all the code to delete issue also using fetch delete to delete the data from db
-- imporving loading and added spinner in delete button 
+- imporving loading and added spinner in delete button
 
-# implementing auth.js 
+# implementing auth.js
+
 - refer this docs https://next-auth.js.org/providers/google
-- watch mosh from 48.1,49.2,50.3 to setup next-auth 
+- watch mosh from 48.1,49.2,50.3 to setup next-auth
 - do as he does and ou will get results
-- successfully implemented next-auth 
+- successfully implemented next-auth
 
 # added login and logout buttons
-- added these button in navbar cmp also used session refer 51.4 
+
+- added these button in navbar cmp also used session refer 51.4
 - styling these links
 - seperated these links in different files and created LoginCard.tsx app>components/LoginCard.tsx
 - created login links in NavBar.tsx
 
 # added skeleton loading for logout and login button
+
 -login links are apperarign after some time so we added skeleton loading to improve user experience
 
-# bug fixes-related to  next-auth
-# most imp reviously we are using AUTH_SECRET but we are next-auth so use NEXTAUTH_SECRET  NEXTAUTH_SECRET
+# bug fixes-related to next-auth
+
+# most imp reviously we are using AUTH_SECRET but we are next-auth so use NEXTAUTH_SECRET NEXTAUTH_SECRET
+
 - while using AUTH_SECRET as secret name ithis error is occuring [next-auth][warn][NO_SECRET] https://next-auth.js.org/warnings#no_secret
-- NEXTAUTH_SECRET=Ah78Knw2bjrdOy2puqeLujL5YgKY2N37EDE/+gbrA+E= #no need to wrap it in string but it is fine  
-- always use NEXTAUTH if you are using next-auth -->NEXTAUTH_URL=http://localhost:3000 #no need to wrap it in string but it is fine  
+- NEXTAUTH_SECRET=Ah78Knw2bjrdOy2puqeLujL5YgKY2N37EDE/+gbrA+E= #no need to wrap it in string but it is fine
+- always use NEXTAUTH if you are using next-auth -->NEXTAUTH_URL=http://localhost:3000 #no need to wrap it in string but it is fine
 
 # Implementing middleware function
+
 - create a new middleware.tsx at the root level
-- Middleware functoin is a function that gets executed on each request , all the requests that we define in middleware.tsx file in his object 
-export const config={
-    matcher:[
-        '/issues/new',
-        '/issues/:id/edit'
-    ]
-}
+- Middleware functoin is a function that gets executed on each request , all the requests that we define in middleware.tsx file in his object
+  export const config={
+  matcher:[
+  '/issues/new',
+  '/issues/:id/edit'
+  ]
+  }
+
+# Protecting edit and delete btns from anonymous users
+
+- used getServerSession in C:\Users\HP\Desktop\nextjs-projects\issuetrackerapp\app\issues\[id]\page.tsx this file
+- used session if true then display btns else not
+
+# Protecting API routes
+
+- in each api>auth>routes we define getServerSession( Provider object )
+  Provider obj path-app/auth/ProviderObjext.ts
+- in each POST DELETE request we define this 
+and if(!session) then we sended nextresonse ad 401 unauthenticated 
