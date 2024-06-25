@@ -115,4 +115,11 @@ DB)
 - NEXTAUTH_SECRET=Ah78Knw2bjrdOy2puqeLujL5YgKY2N37EDE/+gbrA+E= #no need to wrap it in string but it is fine  
 - always use NEXTAUTH if you are using next-auth -->NEXTAUTH_URL=http://localhost:3000 #no need to wrap it in string but it is fine  
 
-
+# Implementing middleware function
+- Middleware functoin is a function that gets executed on each request , all the requests that we define in middleware.tsx file in his object 
+export const config={
+    matcher:[
+        '/issues/new',
+        '/issues/:id/edit'
+    ]
+}
