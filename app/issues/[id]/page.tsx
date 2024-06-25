@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import { IssueBadge } from "@/app/components/index";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import DeleteIssueButton from "./DeleteIssueButton";
 import { getServerSession } from "next-auth";
 import ProviderObject from "@/app/auth/ProviderObjext";
+import AssignTocmp from "../_components/AssignTocmp";
 interface Props {
   params: { id: string };
 }
@@ -23,7 +24,7 @@ const ViewIssueDetailsPage = async ({ params: { id } }: Props) => {
   //getting server session to get the current user session
 
   const session = await getServerSession(ProviderObject); //it returns a promis so await it
- 
+
   return (
     <div className="mt-8 ml-6">
       <h1 className="text-xl font-bold mb-2 capitalize">{issueData.title}</h1>
@@ -39,10 +40,11 @@ const ViewIssueDetailsPage = async ({ params: { id } }: Props) => {
           </ReactMarkDown>
         </div>
         {session && (
-          <div className="btnContainer w-1/2  py-4 px-8 ">
+          <div className="btnContainer w-1/2  py-4 px-8">
+            <AssignTocmp/>
             <Link
               href={`/issues/${issueData.id}/edit?id=${issueData.id}`}
-              className="btn btn-primary btn-outline px-6 rounded-xl capitalize w-[55%]"
+              className="btn btn-primary btn-outline px-6 rounded-xl capitalize w-[55%] mt-4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
