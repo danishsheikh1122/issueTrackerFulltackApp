@@ -116,6 +116,7 @@ DB)
 - always use NEXTAUTH if you are using next-auth -->NEXTAUTH_URL=http://localhost:3000 #no need to wrap it in string but it is fine  
 
 # Implementing middleware function
+- create a new middleware.tsx at the root level
 - Middleware functoin is a function that gets executed on each request , all the requests that we define in middleware.tsx file in his object 
 export const config={
     matcher:[
