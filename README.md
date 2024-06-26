@@ -160,5 +160,8 @@ and if(!session) then we sended nextresonse ad 401 unauthenticated
 
 - React Query worked dont check type at useQuery<User>
 instead check it later on.....
- 
 
+# Implementing assign to user in prisma 
+- created relation between user and issue schema 62.5
+- Updated PATCH request in ap>api>issues>[id]>route.tsx, created new zod schema, 43.6 
+- tested api using postman and all done 

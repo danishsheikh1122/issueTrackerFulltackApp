@@ -30,7 +30,7 @@ const AssignTocmp: React.FC = () => {
       defaultValue=""
     >
       <option disabled value="">
-        Who shot first?
+        Assign...
       </option>
       {data?.body?.map((clientsData) => (
         <option

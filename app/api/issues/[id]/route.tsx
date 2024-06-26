@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
-import schema from "../schema";
+import { assignToSchema } from "../schema";
 import ProviderObject from "@/app/auth/ProviderObjext";
 import { getServerSession } from "next-auth";
 interface Params {
@@ -9,13 +9,25 @@ interface Params {
 
 // patch to update one or more fileds
 export async function PATCH(req: NextRequest, { params: { id } }: Params) {
-  const session=await getServerSession(ProviderObject)
-  if(!session) return NextResponse.json({message:"login first"},{status:401})//if we dont have session then return unauthorized
+  // const session = await getServerSession(ProviderObject);
+  // if (!session)
+  //   return NextResponse.json({ message: "login first" }, { status: 401 }); //if we dont have session then return unauthorized
   const intId = parseInt(id);
   const body = await req.json();
-  const isValidate = schema.safeParse(body);
+  const isValidate = assignToSchema.safeParse(body); //parsing with new schema that we just created
   if (!isValidate.success)
     return NextResponse.json(isValidate.error.errors, { status: 404 });
+
+  //assign to useId validation
+  const { assignToUserId, title, description } = body;
+  if (assignToUserId) {
+    const user = await prisma.user.findUnique({
+      where: { id: assignToUserId },
+    });
+
+    if (!user)
+      return NextResponse.json({ status: 400, error: "user not found" });
+  }
   const issuePresent = await prisma.issue.findUnique({ where: { id: intId } });
   if (!issuePresent)
     return NextResponse.json({ status: 404, error: "user not found" });
@@ -24,17 +36,29 @@ export async function PATCH(req: NextRequest, { params: { id } }: Params) {
       id: intId,
     },
     data: {
-      title: isValidate.data.title,
-      description: isValidate.data.description,
+      title,
+      description,
+      assignToUserId,
     },
   });
+
+  // const updateIssue: {
+  //   title?: string;
+  //   description?: string;
+  //   assignToUserId?: string | null;
+  // } = {
+  //   title,
+  //   description,
+  //   assignToUserId,
+  // };
 
   return NextResponse.json({ status: 200, data: updateIssue });
 }
 
-export async function DELETE(req:NextRequest,{params:{id}}:Params){
-  const session=await getServerSession(ProviderObject)
-  if(!session) return NextResponse.json({message:"login first"},{status:401})//if we dont have session then return unauthorized
+export async function DELETE(req: NextRequest, { params: { id } }: Params) {
+  const session = await getServerSession(ProviderObject);
+  if (!session)
+    return NextResponse.json({ message: "login first" }, { status: 401 }); //if we dont have session then return unauthorized
 
   const intId = parseInt(id);
   const issuePresent = await prisma.issue.findUnique({ where: { id: intId } });
@@ -45,5 +69,8 @@ export async function DELETE(req:NextRequest,{params:{id}}:Params){
       id: intId,
     },
   });
-  return NextResponse.json({ status: 200, message:'issue deleted successfully'});
+  return NextResponse.json({
+    status: 200,
+    message: "issue deleted successfully",
+  });
 }
