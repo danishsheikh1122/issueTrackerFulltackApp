@@ -13,10 +13,10 @@ interface UserResponse {
 
 const AssignTocmp: React.FC = () => {
   const { data, error, isLoading } = useQuery<UserResponse, Error>({
-    queryKey: ['users'],
-    queryFn: () => axios.get('/api/users').then((res) => res.data),
+    queryKey: ["users"],
+    queryFn: () => axios.get("/api/users").then((res) => res.data),
     staleTime: 60 * 1000, // 60 seconds
-    retry: 3
+    retry: 3,
   });
 
   if (isLoading) return <Skeleton />;
@@ -25,12 +25,19 @@ const AssignTocmp: React.FC = () => {
   // console.log(data?.body);
 
   return (
-    <select className="select select-bordered max-w-xs rounded-lg w-[70%]" defaultValue="">
+    <select
+      className="select select-bordered max-w-xs rounded-lg w-[70%]"
+      defaultValue=""
+    >
       <option disabled value="">
         Who shot first?
       </option>
       {data?.body?.map((clientsData) => (
-        <option className="text-black" value={clientsData.name!} key={clientsData.id!}>
+        <option
+          className="text-black"
+          value={clientsData.name!}
+          key={clientsData.id!}
+        >
           {clientsData.name}
         </option>
       ))}

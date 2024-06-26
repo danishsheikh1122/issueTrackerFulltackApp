@@ -159,5 +159,6 @@ and if(!session) then we sended nextresonse ad 401 unauthenticated
 - created ReactQuery.tsx in app>ReactQuery.tsx and imported it in layout.tsx and wrap all body cmp to ReactQuer
 
 - React Query worked dont check type at useQuery<User>
-instead check it later on..... 
+instead check it later on.....
+ 
 
