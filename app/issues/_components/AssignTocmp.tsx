@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Skeleton from "@/app/components/Skeleton";
 import { Issue } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
@@ -11,14 +11,16 @@ interface UserResponse {
   body: User[];
 }
 
-
-
-
-
-
 const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
-  const { data, error, isLoading } = useUsers
-  const [selectedUserId, setSelectedUserId] = useState<string | undefined>(undefined);
+  const { data, error, isLoading } = useQuery<UserResponse, Error>({
+    queryKey: ["users"],
+    queryFn: () => axios.get("/api/users").then((res) => res.data),
+    staleTime: 60 * 1000, // 60 seconds
+    retry: 3,
+  });
+  const [selectedUserId, setSelectedUserId] = useState<string | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     if (issueData.assignToUserId && data?.body) {
@@ -29,7 +31,9 @@ const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
   if (isLoading) return <Skeleton />;
   if (error) return <div>Error loading users</div>;
 
-  const handleAssigneeChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleAssigneeChange = async (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const userId = event.target.value;
     setSelectedUserId(userId);
 
@@ -62,7 +66,9 @@ const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
       <option disabled value="">
         AssignIssue
       </option>
-      <option value="" className="font-semibold">Click to Unassigne Issue</option>
+      <option value="" className="font-semibold">
+        Click to Unassigne Issue
+      </option>
       {data?.body?.map((userData) => (
         <option
           className="text-black"
@@ -76,11 +82,11 @@ const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
   );
 };
 
-const useUsers= useQuery<UserResponse, Error>({
-  queryKey: ["users"],
-  queryFn: () => axios.get("/api/users").then((res) => res.data),
-  staleTime: 60 * 1000, // 60 seconds
-  retry: 3,
-});
+// const useUsers= useQuery<UserResponse, Error>({
+//   queryKey: ["users"],
+//   queryFn: () => axios.get("/api/users").then((res) => res.data),
+//   staleTime: 60 * 1000, // 60 seconds
+//   retry: 3,
+// });
 
 export default AssignTocmp;
