@@ -167,3 +167,7 @@ instead check it later on.....
 - tested api using postman and all done 
 - implemented assignee full function if one issue is assigned to a user and if we reload the page , the previously assigned user will show
 - Refactored assigne cmp
+
+
+# Added filterComponent in issue page
+- added filterComponent of daisy ui to issue page  

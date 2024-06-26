@@ -3,7 +3,7 @@ import Link from "next/link";
 import prisma from "@/prisma/client";
 //adding custome delay
 import delay from "delay";
-
+import FilterComponent from "./FilterComponent";
 //importing issuetrackerBadge
 import { IssueBadge } from "../components/index";
 const IssuePage = async () => {
@@ -12,7 +12,8 @@ const IssuePage = async () => {
   const data = await prisma.issue.findMany();
   return (
     <div data-theme="fantasy">
-      <div className="flex justify-end">
+      <div className="flex justify-between">
+      <FilterComponent />
         <Link
           href="/issues/new"
           className="lg:w-1/5 w-1/2  md:w-1/5 btn btn-outline btn-primary rounded-md mx-4 my-2 capitalize"
@@ -61,3 +62,5 @@ const IssuePage = async () => {
 };
 
 export default IssuePage;
+
+
