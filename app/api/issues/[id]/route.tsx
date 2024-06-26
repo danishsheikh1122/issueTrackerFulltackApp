@@ -10,9 +10,9 @@ interface Params {
 
 // patch to update one or more fileds
 export async function PATCH(req: NextRequest, { params: { id } }: Params) {
-  // const session = await getServerSession(ProviderObject);
-  // if (!session)
-  //   return NextResponse.json({ message: "login first" }, { status: 401 }); //if we dont have session then return unauthorized
+  const session = await getServerSession(ProviderObject);
+  if (!session)
+    return NextResponse.json({ message: "login first" }, { status: 401 }); //if we dont have session then return unauthorized
   const intId = parseInt(id);
   const body = await req.json();
   const isValidate = assignToSchema.safeParse(body); //parsing with new schema that we just created

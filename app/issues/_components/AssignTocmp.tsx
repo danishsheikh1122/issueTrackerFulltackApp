@@ -1,24 +1,23 @@
 'use client'
-import { useQuery } from "@tanstack/react-query";
-import { User } from "next-auth";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Skeleton from "@/app/components/Skeleton";
 import { Issue } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { User } from "next-auth";
+import React, { useEffect, useState } from "react";
 
 interface UserResponse {
   status: number;
   body: User[];
 }
 
-const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
-  const { data, error, isLoading } = useQuery<UserResponse, Error>({
-    queryKey: ["users"],
-    queryFn: () => axios.get("/api/users").then((res) => res.data),
-    staleTime: 60 * 1000, // 60 seconds
-    retry: 3,
-  });
 
+
+
+
+
+const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
+  const { data, error, isLoading } = useUsers
   const [selectedUserId, setSelectedUserId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -61,9 +60,9 @@ const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
       onChange={handleAssigneeChange}
     >
       <option disabled value="">
-        Assign...
+        AssignIssue
       </option>
-      <option value="">Unassigned</option>
+      <option value="" className="font-semibold">Click to Unassigne Issue</option>
       {data?.body?.map((userData) => (
         <option
           className="text-black"
@@ -76,5 +75,12 @@ const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
     </select>
   );
 };
+
+const useUsers= useQuery<UserResponse, Error>({
+  queryKey: ["users"],
+  queryFn: () => axios.get("/api/users").then((res) => res.data),
+  staleTime: 60 * 1000, // 60 seconds
+  retry: 3,
+});
 
 export default AssignTocmp;

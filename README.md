@@ -165,4 +165,5 @@ instead check it later on.....
 - created relation between user and issue schema 62.5
 - Updated PATCH request in ap>api>issues>[id]>route.tsx, created new zod schema, 43.6 
 - tested api using postman and all done 
-- implemented assignee full function if one issue is assigned to a user and if we reload the page , the previously assigned user will show 
+- implemented assignee full function if one issue is assigned to a user and if we reload the page , the previously assigned user will show
+- Refactored assigne cmp
