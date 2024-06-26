@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import schema from "./schema";
+import {schema} from "./schema";
 import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
 import ProviderObject from "@/app/auth/ProviderObjext";

@@ -41,7 +41,7 @@ const ViewIssueDetailsPage = async ({ params: { id } }: Props) => {
         </div>
         {session && (
           <div className="btnContainer w-1/2  py-4 px-8">
-            <AssignTocmp/>
+            <AssignTocmp issueData={issueData}/>
             <Link
               href={`/issues/${issueData.id}/edit?id=${issueData.id}`}
               className="btn btn-primary btn-outline px-6 rounded-xl capitalize w-[55%] mt-4"

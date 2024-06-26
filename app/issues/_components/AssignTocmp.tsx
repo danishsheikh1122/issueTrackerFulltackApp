@@ -1,17 +1,17 @@
-// components/AssignTocmp.tsx
-"use client";
+'use client'
 import { useQuery } from "@tanstack/react-query";
 import { User } from "next-auth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Skeleton from "@/app/components/Skeleton";
+import { Issue } from "@prisma/client";
 
 interface UserResponse {
   status: number;
   body: User[];
 }
 
-const AssignTocmp: React.FC = () => {
+const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
   const { data, error, isLoading } = useQuery<UserResponse, Error>({
     queryKey: ["users"],
     queryFn: () => axios.get("/api/users").then((res) => res.data),
@@ -19,26 +19,58 @@ const AssignTocmp: React.FC = () => {
     retry: 3,
   });
 
+  const [selectedUserId, setSelectedUserId] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    if (issueData.assignToUserId && data?.body) {
+      setSelectedUserId(issueData.assignToUserId.toString());
+    }
+  }, [issueData.assignToUserId, data?.body]);
+
   if (isLoading) return <Skeleton />;
   if (error) return <div>Error loading users</div>;
 
-  // console.log(data?.body);
+  const handleAssigneeChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const userId = event.target.value;
+    setSelectedUserId(userId);
+
+    try {
+      const response = await fetch(`/api/issues/${issueData.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ assignToUserId: userId || null }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      // Optionally handle success response here
+      console.log(`Assignee updated successfully for issue ${issueData.id}`);
+    } catch (error) {
+      console.error("Error updating assignee:", error);
+    }
+  };
 
   return (
     <select
       className="select select-bordered max-w-xs rounded-lg w-[70%]"
-      defaultValue=""
+      value={selectedUserId || ""}
+      onChange={handleAssigneeChange}
     >
       <option disabled value="">
         Assign...
       </option>
-      {data?.body?.map((clientsData) => (
+      <option value="">Unassigned</option>
+      {data?.body?.map((userData) => (
         <option
           className="text-black"
-          value={clientsData.name!}
-          key={clientsData.id!}
+          value={userData.id.toString()}
+          key={userData.id}
         >
-          {clientsData.name}
+          {userData.name}
         </option>
       ))}
     </select>

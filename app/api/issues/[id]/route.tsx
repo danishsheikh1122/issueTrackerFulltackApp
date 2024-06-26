@@ -3,6 +3,7 @@ import prisma from "@/prisma/client";
 import { assignToSchema } from "../schema";
 import ProviderObject from "@/app/auth/ProviderObjext";
 import { getServerSession } from "next-auth";
+import { isDataView } from "util/types";
 interface Params {
   params: { id: string };
 }
@@ -41,18 +42,28 @@ export async function PATCH(req: NextRequest, { params: { id } }: Params) {
       assignToUserId,
     },
   });
-
+  
   // const updateIssue: {
-  //   title?: string;
-  //   description?: string;
-  //   assignToUserId?: string | null;
-  // } = {
+    //   title?: string;
+    //   description?: string;
+    //   assignToUserId?: string | null;
+    // } = {
   //   title,
   //   description,
   //   assignToUserId,
   // };
+  // const responseData = {
+  //   id: updateIssue.id,
+  //   title: updateIssue.title,
+  //   description: updateIssue.description,
+  //   assignToUserId: updateIssue.assignToUserId,
+  //   status: updateIssue.status,
+  //   createdAt: updateIssue.createdAt,
+  //   updatedAt: updateIssue.updatedAt,
+  // };
 
   return NextResponse.json({ status: 200, data: updateIssue });
+  // return NextResponse.json({ status: 200, data: responseData });
 }
 
 export async function DELETE(req: NextRequest, { params: { id } }: Params) {
