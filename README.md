@@ -171,3 +171,13 @@ instead check it later on.....
 
 # Added filterComponent in issue page
 - added filterComponent of daisy ui to issue page  
+- filter component fully implemented with full functionalities
+- from next/navigation I used router
+- router.push,filter cpm file created and some updates IssuePagecmp 
+
+# bug fixes if user enters wrong query http://localhost:3000/issues?filterBy=OPENasd 
+-   const status=Object.values(Status)
+  console.log(status);
+  const finalStatus=status.includes(filterBy)?filterBy:undefined;
+  const data = await prisma.issue.findMany({ where: { status: finalStatus } });
+- this code is used 68.2

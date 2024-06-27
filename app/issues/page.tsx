@@ -6,17 +6,25 @@ import delay from "delay";
 import FilterComponent from "./FilterComponent";
 //importing issuetrackerBadge
 import { IssueBadge } from "../components/index";
-const IssuePage = async () => {
+import { Status } from "@prisma/client";
+
+interface QueryParams {
+  searchParams: { filterBy: Status };
+}
+const IssuePage = async ({ searchParams: { filterBy } }: QueryParams) => {
   //adding custome delat
   // await delay(2000);
-  const data = await prisma.issue.findMany();
+  const status=Object.values(Status)
+  console.log(status);
+  const finalStatus=status.includes(filterBy)?filterBy:undefined;
+  const data = await prisma.issue.findMany({ where: { status: finalStatus } });
   return (
     <div data-theme="fantasy">
-      <div className="flex justify-between">
+      <div className="flex flex-col-reverse  md:flex md:flex-col-reverse lg:flex lg:flex-row lg:justify-between">
       <FilterComponent />
         <Link
           href="/issues/new"
-          className="lg:w-1/5 w-1/2  md:w-1/5 btn btn-outline btn-primary rounded-md mx-4 my-2 capitalize"
+          className="lg:w-1/5 w-1/2 md:w-1/5 btn btn-outline btn-primary rounded-md mx-4 my-2 capitalize"
         >
           create new issue
         </Link>
@@ -44,7 +52,12 @@ const IssuePage = async () => {
               <tr className="hover" key={issue.id}>
                 {/* <th>{issue.id}</th> */}
                 <td className="capitalize">
-                  <Link href={`/issues/${issue.id}`} className='text-blue-400 hover:underline'>{issue.title}</Link>
+                  <Link
+                    href={`/issues/${issue.id}`}
+                    className="text-blue-400 hover:underline"
+                  >
+                    {issue.title}
+                  </Link>
                 </td>
                 <td>
                   <IssueBadge status={issue.status}></IssueBadge>
@@ -62,5 +75,3 @@ const IssuePage = async () => {
 };
 
 export default IssuePage;
-
-
