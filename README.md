@@ -183,3 +183,8 @@
   const finalStatus=status.includes(filterBy)?filterBy:undefined;
   const data = await prisma.issue.findMany({ where: { status: finalStatus } });
 - this code is used 68.2
+
+# filtering data by issue and status
+
+- Link href={/issues?filterBy=${filterBy}&orderBy=${value}}>
+th
