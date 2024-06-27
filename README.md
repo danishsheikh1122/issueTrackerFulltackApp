@@ -143,40 +143,42 @@
 
 - in each api>auth>routes we define getServerSession( Provider object )
   Provider obj path-app/auth/ProviderObjext.ts
-- in each POST DELETE request we define this 
-and if(!session) then we sended nextresonse ad 401 unauthenticated 
+- in each POST DELETE request we define this
+  and if(!session) then we sended nextresonse ad 401 unauthenticated
 
+# assign to component added
 
-# assign to component added 
-- this cmp is used assign issue to users is present in issues/_cmps folder 
+- this cmp is used assign issue to users is present in issues/\_cmps folder
 - assign cmp full working with fetch
-- every time fetch is not good so we are using react quwery to do so 
+- every time fetch is not good so we are using react quwery to do so
 - created seperate branch for fetch
 
-
 # So in order to solve above we are making this changes
+
 - we have used tankstack.com React Query to fetch and cach data in efficient way now need to to fetch data every time we edit issue or etc
 - created ReactQuery.tsx in app>ReactQuery.tsx and imported it in layout.tsx and wrap all body cmp to ReactQuer
 
 - React Query worked dont check type at useQuery<User>
-instead check it later on.....
+  instead check it later on.....
 
-# Implementing assign to user in prisma 
+# Implementing assign to user in prisma
+
 - created relation between user and issue schema 62.5
-- Updated PATCH request in ap>api>issues>[id]>route.tsx, created new zod schema, 43.6 
-- tested api using postman and all done 
+- Updated PATCH request in ap>api>issues>[id]>route.tsx, created new zod schema, 43.6
+- tested api using postman and all done
 - implemented assignee full function if one issue is assigned to a user and if we reload the page , the previously assigned user will show
 - Refactored assigne cmp
 
-
 # Added filterComponent in issue page
-- added filterComponent of daisy ui to issue page  
+
+- added filterComponent of daisy ui to issue page
 - filter component fully implemented with full functionalities
 - from next/navigation I used router
-- router.push,filter cpm file created and some updates IssuePagecmp 
+- router.push,filter cpm file created and some updates IssuePagecmp
 
-# bug fixes if user enters wrong query http://localhost:3000/issues?filterBy=OPENasd 
--   const status=Object.values(Status)
+# bug fixes if user enters wrong query http://localhost:3000/issues?filterBy=OPENasd
+
+- const status=Object.values(Status)
   console.log(status);
   const finalStatus=status.includes(filterBy)?filterBy:undefined;
   const data = await prisma.issue.findMany({ where: { status: finalStatus } });
