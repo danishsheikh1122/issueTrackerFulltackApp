@@ -31,7 +31,7 @@ const IssuePage = async ({ searchParams: { filterBy } }: QueryParams) => {
     {
       label: "created at",
       value: "createdAt",
-      classname: "text-left font-semibold capitalize hidden lg:block md:block text-base",
+      classname: "text-left font-semibold capitalize hidden lg:block md:block text-base  ",
     },
   ];
 
@@ -41,6 +41,26 @@ const IssuePage = async ({ searchParams: { filterBy } }: QueryParams) => {
   const status = Object.values(Status);
   // console.log(status);
   const finalStatus = status.includes(filterBy) ? filterBy : undefined;
+
+  //doing same for orderBy query params
+  // const orderStatus={
+  //   Title:'title',
+  //   Status:'status',
+  //   CreatedAt:'createdAt'
+
+  // }
+  // const orderBy:orderStatus=
+  // Object.values(orderStatus).includes(orderBy)? orderBy : undefined;
+  // console.log(orderBy);
+  // console.log(finalStatus);
+  // console.log(orderStatus);
+  // console.log(Object.values(orderStatus));
+  // console.log(Object.values(orderStatus).includes(orderBy));
+  // console.log(Object.values(orderStatus).includes(orderBy)? orderBy : undefined);  
+  
+  // ends <----
+
+
   const data = await prisma.issue.findMany({ where: { status: finalStatus } });
   // ends <----
 
