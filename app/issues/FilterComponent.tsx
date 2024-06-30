@@ -22,7 +22,7 @@ export default function FilterComponent() {
 
   const handleChange = (person: { id: number, status: string }) => {
     setSelected(person);
-    console.log(person.status);
+    // console.log(person.status);
     
     if(person.status==='OPEN' || person.status==='CLOSED' || person.status==='IN_PROGRESS'){ 
       const query=person.status ? `/issues?filterBy=${encodeURIComponent(person.status.trim())}` :''

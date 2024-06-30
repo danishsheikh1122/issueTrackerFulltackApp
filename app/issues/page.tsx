@@ -8,11 +8,19 @@ import FilterComponent from "./FilterComponent";
 import { IssueBadge } from "../components/index";
 import { Issue, Status } from "@prisma/client";
 
+// interface orderStatus {
+//   Title: "title";
+//   Status: "status";
+//   CreatedAt: "createdAt";
+// }
+
 interface QueryParams {
-  searchParams: { filterBy: Status ,orderBy: string};
+  searchParams: { filterBy: Status; orderBy: keyof Issue };
 }
 
-const IssuePage = async ({ searchParams: { filterBy } }: QueryParams) => {
+const IssuePage = async ({
+  searchParams: { filterBy, orderBy },
+}: QueryParams) => {
   const tableHeadData: {
     label: string;
     value: keyof Issue;
@@ -21,17 +29,18 @@ const IssuePage = async ({ searchParams: { filterBy } }: QueryParams) => {
     {
       label: "Issue",
       value: "title",
-      classname: "text-left font-semibold capitalize text-base",
+      classname: "text-left font-semibold capitalize text-base ",
     },
     {
       label: "Status",
       value: "status",
-      classname: "text-left font-semibold capitalize text-base",
+      classname: "text-left font-semibold capitalize text-base ",
     },
     {
       label: "created at",
       value: "createdAt",
-      classname: "text-left font-semibold capitalize hidden lg:block md:block text-base  ",
+      classname:
+        "text-left font-semibold capitalize hidden lg:block md:block text-base  ",
     },
   ];
 
@@ -51,23 +60,21 @@ const IssuePage = async ({ searchParams: { filterBy } }: QueryParams) => {
   // }
   // const orderBy:orderStatus=
   // Object.values(orderStatus).includes(orderBy)? orderBy : undefined;
-  // console.log(orderBy);
+  console.log(orderBy);
   // console.log(finalStatus);
   // console.log(orderStatus);
   // console.log(Object.values(orderStatus));
   // console.log(Object.values(orderStatus).includes(orderBy));
-  // console.log(Object.values(orderStatus).includes(orderBy)? orderBy : undefined);  
-  
+  // console.log(Object.values(orderStatus).includes(orderBy)? orderBy : undefined);
+
   // ends <----
-
-
-  const data = await prisma.issue.findMany({ where: { status: finalStatus } });
+  const data = await prisma.issue.findMany({
+    where: { status: finalStatus },
+    orderBy: orderBy ? { [orderBy]: "asc" } : undefined,
+  });
   // ends <----
-
 
   //imp sorting with issue open and created At 69.3
-
-
 
   return (
     <div data-theme="fantasy">
@@ -86,15 +93,24 @@ const IssuePage = async ({ searchParams: { filterBy } }: QueryParams) => {
           <thead className="bg-gray-300">
             <tr>
               {/* <th className="text-left font-semibold">#</th> */}
-              {
-                tableHeadData.map(({ label, value, classname }) => (
-                  <th key={value} className={classname}>
-                    <Link href={`/issues?filterBy=${filterBy}&orderBy=${value}`}>
+              {tableHeadData.map(({ label, value, classname }) => (
+                <th key={value} className={classname}>
+                  <Link href={`/issues?filterBy=${filterBy}&orderBy=${value}`} className="flex items-center">
                     {label}
-                    </Link>
-                  </th>
-                ))
-              }
+                    {orderBy===value && (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="16px"
+                        viewBox="0 -960 960 960"
+                        width="24px"                      
+                        fill="#5f6368"
+                      >
+                        <path d="M440-80v-647L256-544l-56-56 280-280 280 280-56 57-184-184v647h-80Z" />
+                      </svg>
+                    )}
+                  </Link>
+                </th>
+              ))}
               {/* <th className="text-left font-semibold capitalize text-base">
                 title
               </th>

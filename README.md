@@ -188,4 +188,6 @@
 
 - Link href={/issues?filterBy=${filterBy}&orderBy=${value}}>
 th
--ausing between issuepage file making filter query 
+- ausing between issuepage file making filter query
+
+- added filter issue with column name and by status (open close in progress)
