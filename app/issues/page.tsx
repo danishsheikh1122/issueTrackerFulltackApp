@@ -23,7 +23,6 @@ interface QueryParams {
 const IssuePage = async ({
   searchParams: { filterBy, orderBy, page },
 }: QueryParams) => {
-
   const tableHeadData: {
     label: string;
     value: keyof Issue;
@@ -46,8 +45,8 @@ const IssuePage = async ({
         "text-left font-semibold capitalize hidden lg:block md:block text-base  ",
     },
   ];
-  const Page=parseInt(page) || 1 //if no page value the pass deafult val as 1
-  const pageSize=10 //page size 
+  const Page = parseInt(page) || 1; //if no page value the pass deafult val as 1
+  const pageSize = 10; //page size
 
   //adding custome delat
   // await delay(2000);
@@ -76,11 +75,13 @@ const IssuePage = async ({
   const data = await prisma.issue.findMany({
     where: { status: finalStatus },
     orderBy: orderBy ? { [orderBy]: "asc" } : undefined,
-    skip:(Page-1)*pageSize,
-    take:pageSize,
+    skip: (Page - 1) * pageSize,
+    take: pageSize,
   });
-  const issueCount = await prisma.issue.count({where:{status: finalStatus}});
-  console.log(issueCount)
+  const issueCount = await prisma.issue.count({
+    where: { status: finalStatus },
+  });
+  // console.log(issueCount)
   // ends <----
 
   //imp sorting with issue open and created At 69.3
@@ -159,8 +160,12 @@ const IssuePage = async ({
         </table>
         {/* adding paginaition cmo */}
       </div>
-      <div className="mx-4" >
-        <Pagination itemCount={issueCount} currentPage={Page} pageSize={pageSize}></Pagination>
+      <div className="mx-4">
+        <Pagination
+          itemCount={issueCount}
+          currentPage={Page}
+          pageSize={pageSize}
+        ></Pagination>
       </div>
     </div>
   );

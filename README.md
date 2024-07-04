@@ -187,17 +187,39 @@
 # filtering data by issue and status
 
 - Link href={/issues?filterBy=${filterBy}&orderBy=${value}}>
-th
+  th
 - ausing between issuepage file making filter query
 
 - added filter issue with column name and by status (open close in progress)
 - some bugs in 71.5 but not fixed filter url issue not fixed
 
 # generating dummy data
+
 - generated dummy data for issue page
 
 # implemented pagination
+
 - created pagination cmp in global cmps folder
-- it uses use router and use searchparams hook 
+- it uses use router and use searchparams hook
 - working properly
 - fully woring pagination done
+
+# builded dashboard with latest issue component
+
+- created LatestIssue.tsx to fetch 5 latest issue from db
+- created layout for dashboard to show issues with logo of user to whome the issue is assigned
+- used   
+const data = await prisma.issue.findMany({
+    where: { status: finalStatus },
+    orderBy: orderBy ? { {[orderBy]}: "asc" } : undefined,
+    skip: (Page - 1) * pageSize,
+    take: pageSize,
+  });
+
+  and 
+   const issues = await prisma.issue.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 5,
+    include: { assignToUser: true },
+  });
+  this type of new params in prisa query skip take and include 

@@ -1,10 +1,9 @@
 import React from 'react'
-import Pagination from './components/Pagination'
-
-const homePage = ({searchParams}:{searchParams:{page:string}}) => {
+import LatestIssue from './alldashboardCMP/LatestIssue'
+const homePage = () => {
   return (
     <div>
-      init page
+      <LatestIssue/>
     </div>
   )
 }
