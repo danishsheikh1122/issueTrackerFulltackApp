@@ -7,6 +7,8 @@ import FilterComponent from "./FilterComponent";
 //importing issuetrackerBadge
 import { IssueBadge } from "../components/index";
 import { Issue, Status } from "@prisma/client";
+import Pagination from "../components/Pagination";
+import { IconBase } from "react-icons/lib";
 
 // interface orderStatus {
 //   Title: "title";
@@ -15,12 +17,13 @@ import { Issue, Status } from "@prisma/client";
 // }
 
 interface QueryParams {
-  searchParams: { filterBy: Status; orderBy: keyof Issue };
+  searchParams: { filterBy: Status; orderBy: keyof Issue; page: string };
 }
 
 const IssuePage = async ({
-  searchParams: { filterBy, orderBy },
+  searchParams: { filterBy, orderBy, page },
 }: QueryParams) => {
+
   const tableHeadData: {
     label: string;
     value: keyof Issue;
@@ -43,6 +46,8 @@ const IssuePage = async ({
         "text-left font-semibold capitalize hidden lg:block md:block text-base  ",
     },
   ];
+  const Page=parseInt(page) || 1 //if no page value the pass deafult val as 1
+  const pageSize=10 //page size 
 
   //adding custome delat
   // await delay(2000);
@@ -60,7 +65,7 @@ const IssuePage = async ({
   // }
   // const orderBy:orderStatus=
   // Object.values(orderStatus).includes(orderBy)? orderBy : undefined;
-  console.log(orderBy);
+  // console.log(orderBy);
   // console.log(finalStatus);
   // console.log(orderStatus);
   // console.log(Object.values(orderStatus));
@@ -71,7 +76,11 @@ const IssuePage = async ({
   const data = await prisma.issue.findMany({
     where: { status: finalStatus },
     orderBy: orderBy ? { [orderBy]: "asc" } : undefined,
+    skip:(Page-1)*pageSize,
+    take:pageSize,
   });
+  const issueCount = await prisma.issue.count({where:{status: finalStatus}});
+  console.log(issueCount)
   // ends <----
 
   //imp sorting with issue open and created At 69.3
@@ -95,14 +104,17 @@ const IssuePage = async ({
               {/* <th className="text-left font-semibold">#</th> */}
               {tableHeadData.map(({ label, value, classname }) => (
                 <th key={value} className={classname}>
-                  <Link href={`/issues?filterBy=${filterBy}&orderBy=${value}`} className="flex items-center">
+                  <Link
+                    href={`/issues?filterBy=${filterBy}&orderBy=${value}`}
+                    className="flex items-center"
+                  >
                     {label}
-                    {orderBy===value && (
+                    {orderBy === value && (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="16px"
                         viewBox="0 -960 960 960"
-                        width="24px"                      
+                        width="24px"
                         fill="#5f6368"
                       >
                         <path d="M440-80v-647L256-544l-56-56 280-280 280 280-56 57-184-184v647h-80Z" />
@@ -145,6 +157,10 @@ const IssuePage = async ({
             ))}
           </tbody>
         </table>
+        {/* adding paginaition cmo */}
+      </div>
+      <div className="mx-4" >
+        <Pagination itemCount={issueCount} currentPage={Page} pageSize={pageSize}></Pagination>
       </div>
     </div>
   );

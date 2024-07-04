@@ -195,3 +195,9 @@ th
 
 # generating dummy data
 - generated dummy data for issue page
+
+# implemented pagination
+- created pagination cmp in global cmps folder
+- it uses use router and use searchparams hook 
+- working properly
+- fully woring pagination done
