@@ -222,4 +222,6 @@ const data = await prisma.issue.findMany({
     take: 5,
     include: { assignToUser: true },
   });
-  this type of new params in prisa query skip take and include 
+  this type of new params in prisa query skip take and include
+
+  - refer dashboard page and issue for details  
