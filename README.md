@@ -191,3 +191,4 @@ th
 - ausing between issuepage file making filter query
 
 - added filter issue with column name and by status (open close in progress)
+- some bugs in 71.5 but not fixed filter url issue not fixed
