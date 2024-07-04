@@ -192,3 +192,6 @@ th
 
 - added filter issue with column name and by status (open close in progress)
 - some bugs in 71.5 but not fixed filter url issue not fixed
+
+# generating dummy data
+- generated dummy data for issue page
