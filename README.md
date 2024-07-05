@@ -225,3 +225,8 @@ const data = await prisma.issue.findMany({
   this type of new params in prisa query skip take and include
 
   - refer dashboard page and issue for details  
+
+# Added issue summary 
+- new file addded in alldashboardCMP > IssueSummary.tsx
+- in dash board created 3 cards showing total issues with status 
+- made the issue summary card clickable to apply filterBy 
