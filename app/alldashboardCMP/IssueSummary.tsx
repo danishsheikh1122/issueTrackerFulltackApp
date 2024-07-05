@@ -1,3 +1,4 @@
+import { Status } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
 
@@ -7,10 +8,11 @@ interface Props {
   closed: number;
 }
 const IssueSummary = ({ open, in_progress, closed }: Props) => {
+  //adding type safety
   const container:{
     label:string,
     value:number,
-    status:string
+    status:Status
   }[] = [
     {
       label: "OPEN",

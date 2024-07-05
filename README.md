@@ -230,3 +230,7 @@ const data = await prisma.issue.findMany({
 - new file addded in alldashboardCMP > IssueSummary.tsx
 - in dash board created 3 cards showing total issues with status 
 - made the issue summary card clickable to apply filterBy 
+
+# build th issue Bar chart cmp-with recharts lib
+- created issueBarChart in alldashboardCMP 
+- added bar chart cmp to home page-landing page
