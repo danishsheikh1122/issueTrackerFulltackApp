@@ -237,3 +237,17 @@ const data = await prisma.issue.findMany({
 
 # Layouted Dashboard
 - added ue friendlty ui and styled al cmps and made them responsive
+
+# Added meta data to all pages
+- meta data means ![alt text](image.png)
+the text inside this img is meta data 
+- code used 
+export const metadata:Metadata ={
+  title: "Issue Tracker - View All Issues",
+  description: "All Issues Here",
+}
+
+here more key-value are available but for this instance we only define title and description we can also add image etc ....
+
+- just add above code in the bottom bo the page where you want to change meta data 
+

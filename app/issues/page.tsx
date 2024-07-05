@@ -9,6 +9,7 @@ import { IssueBadge } from "../components/index";
 import { Issue, Status } from "@prisma/client";
 import Pagination from "../components/Pagination";
 import { IconBase } from "react-icons/lib";
+import { Metadata } from "next";
 
 // interface orderStatus {
 //   Title: "title";
@@ -170,5 +171,12 @@ const IssuePage = async ({
     </div>
   );
 };
+
+
+export const metadata:Metadata ={
+  title: "Issue Tracker - View All Issues",
+  description: "All Issues Here",
+}
+
 
 export default IssuePage;
