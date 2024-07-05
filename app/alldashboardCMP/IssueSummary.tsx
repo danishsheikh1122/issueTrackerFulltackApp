@@ -20,17 +20,17 @@ const IssueSummary = ({ open, in_progress, closed }: Props) => {
       status: "OPEN",
     },
     {
-      label: "CLOSED",
-      value: closed,
-      status: "CLOSED",
-    },
-    {
       label: "IN_PROGRESS",
       value: in_progress,
       status: "IN_PROGRESS",
     },
+    {
+      label: "CLOSED",
+      value: closed,
+      status: "CLOSED",
+    },
   ];
-  return <div className="flex lg:flex lg:w-1/2 gap-2 mx-4 mt-4 text-zinc-400">
+  return <div className="flex lg:flex lg:w-full w-full gap-2 mx-4 mt-4 text-zinc-400">
     {container.map((status)=>{
         return <div key={status.label} className={`flex-row flex-1 p-2 text-center border-2 border-${status.status}-400 rounded-lg mt-4 lg:h-fit h-fit`}>
           <span>{status.label}</span>

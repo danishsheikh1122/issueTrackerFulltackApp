@@ -234,3 +234,6 @@ const data = await prisma.issue.findMany({
 # build th issue Bar chart cmp-with recharts lib
 - created issueBarChart in alldashboardCMP 
 - added bar chart cmp to home page-landing page
+
+# Layouted Dashboard
+- added ue friendlty ui and styled al cmps and made them responsive

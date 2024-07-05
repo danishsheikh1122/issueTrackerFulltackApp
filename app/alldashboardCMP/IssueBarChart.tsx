@@ -26,7 +26,7 @@ const IssueBarChart = ({ open, in_progress, closed }: Props) => {
     },
   ];
   return (
-      <ResponsiveContainer width="50%" height={300} className=''>
+      <ResponsiveContainer width="100%" height={300} className='border-2 border-zinc-200 rounded-lg'>
         <BarChart data={container}> 
           <XAxis dataKey="label" />
           <YAxis />
