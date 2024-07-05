@@ -32,6 +32,11 @@ const HomePage = async () => {
     </div>
   );
 };
-c
+
+export const metadata:Metadata ={
+  title: "Issue Tracker - Dashboard",
+  description: "A simple bug tracker application for managing and tracking software issues.",
+}
+
 
 export default HomePage;

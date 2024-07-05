@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { cache, useEffect, useState } from "react";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import { IssueBadge } from "@/app/components/index";
@@ -9,16 +9,18 @@ import DeleteIssueButton from "./DeleteIssueButton";
 import { getServerSession } from "next-auth";
 import ProviderObject from "@/app/auth/ProviderObjext";
 import AssignTocmp from "../_components/AssignTocmp";
+import { fetchData } from "next-auth/client/_utils";
 interface Props {
   params: { id: string };
 }
+
+const fetchUser=cache((issueId: number) => prisma.issue.findUnique({ where: { id: issueId } }));
+
 const ViewIssueDetailsPage = async ({ params: { id } }: Props) => {
   await delay(1000);
   const intId = parseInt(id);
   //   if (typeof id !== 'number') notFound(); if in route client passes any alphabet the it will render the 404 page
-  const issueData = await prisma.issue.findUnique({
-    where: { id: intId },
-  });
+  const issueData = await fetchUser(intId)
   if (!issueData) notFound();
 
   //getting server session to get the current user session
@@ -41,7 +43,7 @@ const ViewIssueDetailsPage = async ({ params: { id } }: Props) => {
         </div>
         {session && (
           <div className="btnContainer w-1/2  py-4 px-8">
-            <AssignTocmp issueData={issueData}/>
+            <AssignTocmp issueData={issueData} />
             <Link
               href={`/issues/${issueData.id}/edit?id=${issueData.id}`}
               className="btn btn-primary btn-outline px-6 rounded-xl capitalize w-[55%] mt-4"
@@ -65,18 +67,16 @@ const ViewIssueDetailsPage = async ({ params: { id } }: Props) => {
   );
 };
 
-export async function generateMetadata({params}:Props){
+//generating meta data
+
+export async function generateMetadata({ params }: Props) {
   const intId = parseInt(params.id);
-  const issueData = await prisma.issue.findUnique({
-    where: { id: intId },
-  });
+  const issueData = await fetchUser(intId);
   if (!issueData) return { notFound: true };
   return {
     title: issueData?.title,
     description: issueData?.description,
   };
 }
-
-
 
 export default ViewIssueDetailsPage;
