@@ -255,3 +255,6 @@ here more key-value are available but for this instance we only define title and
 - issuetrackerapp\app\issues\[id]\page.tsx 
 - in this xmp we are requesting 2 quereis for same data so instead we used react cache to get data once and can be used 
 - const fetchUser=cache((issueId: number) => prisma.issue.findUnique({ where: { id: issueId } }));
+
+# add an example env file
+- always create dummy .env file so that other users can use your repo
