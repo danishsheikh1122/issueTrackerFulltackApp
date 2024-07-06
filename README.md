@@ -258,3 +258,6 @@ here more key-value are available but for this instance we only define title and
 
 # add an example env file
 - always create dummy .env file so that other users can use your repo
+
+# added sentry.io track issues
+- it is a tool to track all issues bugs in our app and inform use when issue occur in user app
