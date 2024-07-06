@@ -261,3 +261,10 @@ here more key-value are available but for this instance we only define title and
 
 # added sentry.io track issues
 - it is a tool to track all issues bugs in our app and inform use when issue occur in user app
+
+# deployment pending
+- mysql cant be deployed on production coz planetscale is not giving free access and others also
+- may be in future will try
+
+# finally wrapping up the project 
+- dated 06-07-2024
