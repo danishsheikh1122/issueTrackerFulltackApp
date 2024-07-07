@@ -15,8 +15,9 @@ const AssignTocmp = ({ issueData }: { issueData: Issue }) => {
   const { data, error, isLoading } = useQuery<UserResponse, Error>({
     queryKey: ["users"],
     queryFn: () => axios.get("/api/users").then((res) => res.data),
-    staleTime: 60 * 1000, // 60 seconds
+    staleTime: 60 * 1000, // 60 seconds // this will update assign to cmp all users in 60 seconds
     retry: 3,
+    // refetchOnMount: true, 
   });
   const [selectedUserId, setSelectedUserId] = useState<string | undefined>(
     undefined
